@@ -1,18 +1,15 @@
 const mongoose = require("mongoose");
 
-const { HOST, DATABASE } = require("../config/env");
-
-const mongoURL = `mongodb://${HOST}/${DATABASE}`;
-
-mongoose
-  .connect(mongoURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log(`DB is connected.`))
-  .catch((err) => {
+exports.mongoConnection = async (mongoURL) => {
+  try {
+    await mongoose.connect(mongoURL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+  } catch (err) {
     console.log(
-      "[Blog Api][Error] Error during connection to the MongoDB database"
+      `[Blog Api][Error] Could not connect to mongo database. \n\terr: ${err}`
     );
     process.exit(1);
-  });
+  }
+};

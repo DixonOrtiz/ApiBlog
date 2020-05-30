@@ -1,9 +1,12 @@
 const express = require("express");
 const expressConfig = require("./config/express");
-const { PORT } = require("./config/env");
+const { PORT, HOST, DATABASE } = require("./config/env");
+const { mongoConnection } = require("./database/connection");
+
+const mongoURL = `mongodb://${HOST}/${DATABASE}`;
 
 const app = express();
-require("./database/connection");
+mongoConnection(mongoURL);
 expressConfig(app);
 
 app.listen(PORT, () => {
