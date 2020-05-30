@@ -2,12 +2,17 @@ const mongoose = require("mongoose");
 
 const { HOST, DATABASE } = require("../config/env");
 
-const MONGO_URL = `mongodb://${HOST}/${DATABASE}`;
+const mongoURL = `mongodb://${HOST}/${DATABASE}`;
 
 mongoose
-  .connect(MONGO_URL, {
+  .connect(mongoURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then((db) => console.log("DB is connected"))
-  .catch((err) => console.error(err));
+  .then(() => console.log(`DB is connected.`))
+  .catch((err) => {
+    console.log(
+      "[Blog Api][Error] Error during connection to the MongoDB database"
+    );
+    process.exit(1);
+  });

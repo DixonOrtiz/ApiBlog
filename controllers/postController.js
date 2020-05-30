@@ -5,6 +5,8 @@ exports.getAllPosts = (request, response) => {
 };
 
 exports.createPost = async (request, response) => {
+  console.log("[Blog Api][Post][/post/createPost][Request]", request.body);
+
   const { title, content } = request.body;
 
   const newPost = new Post({ title, content });
