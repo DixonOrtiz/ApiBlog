@@ -1,5 +1,8 @@
+const routes = require("../routes");
+const cors = require("cors");
+
 module.exports = (app) => {
-  app.get("/", function (req, res) {
-    res.send("Hello World!");
-  });
+  app.use(cors());
+
+  app.use(routes);
 };
