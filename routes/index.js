@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 
-const blogRouter = require("./blog.js");
+const postRouter = require("./post.js");
 
-app.use(blogRouter);
+app.use(postRouter);
 
 module.exports = app;
