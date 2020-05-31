@@ -5,8 +5,14 @@ const { mongoConnection } = require("./database/connection");
 
 const mongoURL = `mongodb://${HOST}/${DATABASE}`;
 
+mongoConnection(mongoURL).catch((error) => {
+  console.log(
+    `[Blog Api][Error] Could not connect to mongo database. \nerr: ${error}`
+  );
+  process.exit(1);
+});
+
 const app = express();
-mongoConnection(mongoURL);
 expressConfig(app);
 
 app.listen(PORT, () => {
