@@ -102,3 +102,41 @@ exports.updatePost = async (request, response) => {
 
   console.log("[Blog Api][Put][/post/updatePost][Done]\n");
 };
+
+exports.deletePost = async (request, response) => {
+  console.log("\n[Blog Api][Put][/post/deletePost][Request]", request.body);
+
+  const { id } = request.body;
+
+  if (id !== undefined) {
+    try {
+      await Post.findByIdAndDelete(id, (err) => {
+        if (err)
+          console.log(
+            "[Blog Api][Put][/post/deletePost][Error]: error calling function findByIdAndDelete"
+          );
+        else {
+          console.log(
+            "[Blog Api][Put][/post/deletePost][Response]\nSuccessful deletion"
+          );
+          response.status(200).json({ response: "Successful deletion" });
+        }
+      });
+    } catch (error) {
+      console.log(`[Blog Api][Put][/post/deletePost][Error]`, error);
+      response.status(500).json({
+        error,
+      });
+    }
+  } else {
+    console.log(
+      "[Blog Api][Put][/post/deletePost][Error]: Bad request",
+      request.body
+    );
+    response.status(400).json({
+      error: "Bad request",
+    });
+  }
+
+  console.log("[Blog Api][Put][/post/deletePost][Done]\n");
+};
