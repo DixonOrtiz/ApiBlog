@@ -5,10 +5,12 @@ const {
   getPostByID,
   getAllPosts,
   createPost,
+  updatePost,
 } = require("../controllers/postController");
 
 router.route("/post/getPostByID").get(getPostByID);
 router.route("/post/getAllPosts").get(getAllPosts);
 router.route("/post/createPost").post(createPost);
+router.route("/post/updatePost").put(updatePost);
 
 module.exports = router;
