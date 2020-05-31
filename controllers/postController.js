@@ -22,6 +22,30 @@ exports.getAllPosts = async (request, response) => {
   console.log("[Blog Api][Get][/post/getAllPosts][Done]\n");
 };
 
+//getPostByID controller
+//Function that gets a post by id id from db
+exports.getPostByID = async (request, response) => {
+  console.log("\n[Blog Api][Get][/post/getPostByID][Request]", request.body);
+
+  try {
+    const { postID } = request.body;
+
+    await Post.findById(postID).then(function (post) {
+      console.log("[Blog Api][Get][/post/getPostByID][Response]", {
+        post,
+      });
+      response.status(200).json(post);
+    });
+  } catch (error) {
+    console.log(`[Blog Api][Get][/post/getPostByID][Error]`, error);
+    response.status(500).json({
+      error,
+    });
+  }
+
+  console.log("[Blog Api][Get][/post/getPostByID][Done]\n");
+};
+
 //createPost controller
 //Function that creates a new Post document in db
 exports.createPost = async (request, response) => {
