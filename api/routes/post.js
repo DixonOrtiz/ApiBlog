@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+//Controllers import
 const {
   getPostByID,
   getAllPosts,
@@ -9,6 +10,7 @@ const {
   deletePost,
 } = require("../controllers/postController");
 
+//Post routes
 router.route("/post/getPostByID").get(getPostByID);
 router.route("/post/getAllPosts").get(getAllPosts);
 router.route("/post/createPost").post(createPost);

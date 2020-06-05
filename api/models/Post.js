@@ -1,5 +1,7 @@
 const { Schema, model } = require("mongoose");
 
+//Post model
+//This model allows to comunicate with mongo's interface functions
 const PostSchema = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },

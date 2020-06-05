@@ -1,7 +1,7 @@
 const Post = require("../models/Post");
 
 //getPostByID controller
-//Function that gets a post by id id from db
+//Function that gets a post by id from db
 exports.getPostByID = async (request, response) => {
   console.log("\n[Blog Api][Get][/post/getPostByID][Request]", request.body);
 
@@ -103,6 +103,8 @@ exports.updatePost = async (request, response) => {
   console.log("[Blog Api][Put][/post/updatePost][Done]\n");
 };
 
+//deletePost controller
+//Function that deletes an existing document in db
 exports.deletePost = async (request, response) => {
   console.log("\n[Blog Api][Put][/post/deletePost][Request]", request.body);
 
