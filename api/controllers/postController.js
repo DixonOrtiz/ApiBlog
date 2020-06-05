@@ -106,7 +106,7 @@ exports.updatePost = async (request, response) => {
 //deletePost controller
 //Function that deletes an existing document in db
 exports.deletePost = async (request, response) => {
-  console.log("\n[Blog Api][Put][/post/deletePost][Request]", request.body);
+  console.log("\n[Blog Api][Delete][/post/deletePost][Request]", request.body);
 
   const { id } = request.body;
 
@@ -115,24 +115,24 @@ exports.deletePost = async (request, response) => {
       await Post.findByIdAndDelete(id, (err) => {
         if (err)
           console.log(
-            "[Blog Api][Put][/post/deletePost][Error]: error calling function findByIdAndDelete"
+            "[Blog Api][Delete][/post/deletePost][Error]: error calling function findByIdAndDelete"
           );
         else {
           console.log(
-            "[Blog Api][Put][/post/deletePost][Response]\nSuccessful deletion"
+            "[Blog Api][Delete][/post/deletePost][Response]\nSuccessful deletion"
           );
           response.status(200).json({ response: "Successful deletion" });
         }
       });
     } catch (error) {
-      console.log(`[Blog Api][Put][/post/deletePost][Error]`, error);
+      console.log(`[Blog Api][Delete][/post/deletePost][Error]`, error);
       response.status(500).json({
         error,
       });
     }
   } else {
     console.log(
-      "[Blog Api][Put][/post/deletePost][Error]: Bad request",
+      "[Blog Api][Delete][/post/deletePost][Error]: Bad request",
       request.body
     );
     response.status(400).json({
@@ -140,5 +140,5 @@ exports.deletePost = async (request, response) => {
     });
   }
 
-  console.log("[Blog Api][Put][/post/deletePost][Done]\n");
+  console.log("[Blog Api][Delete][/post/deletePost][Done]\n");
 };
